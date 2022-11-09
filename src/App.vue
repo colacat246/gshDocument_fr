@@ -1,19 +1,40 @@
 <template>
   <div class="container">
     <header><h1>GSH Document</h1></header>
-    <aside>list list</aside>
-    <main>main frame</main>
-    <footer>this is the footer</footer>
+    <aside>
+      <ArticleListVue :articles="articles"></ArticleListVue>
+    </aside>
+    <main><router-view></router-view></main>
+    <footer>copyright xxx maintained by colacat246</footer>
   </div>
 </template>
 
 <script>
-export default {};
+import ArticleListVue from './components/ArticleList.vue';
+export default {
+  components: { ArticleListVue },
+  data() {
+    return {
+      articles: [
+        {
+          id: 1,
+          title: 'art1',
+          articlePath: '/tests/article1.html',
+          sourceCodePath: '/tests/source1.c',
+        },
+        {
+          id: 2,
+          title: 'art2',
+          articlePath: '/tests/article2.html',
+          sourceCodePath: '/tests/source2.c',
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>
-* {
-}
 h1 {
   text-align: center;
   font-size: 1.8rem;
@@ -35,6 +56,7 @@ aside {
 main {
   background: red;
   grid-area: 1 / 2 / span 2 / span 1;
+  position: relative;
 }
 footer {
   background: gold;

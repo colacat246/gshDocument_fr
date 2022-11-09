@@ -1,7 +1,10 @@
 import { createApp } from 'vue';
+import router from './routers/router.js';
 import './normalize.css';
 import './style.css';
 import App from './App.vue';
 
+
 const app = createApp(App);
+app.use(router);
 app.mount('#app');
