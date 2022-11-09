@@ -1,7 +1,27 @@
-# Vue 3 + Vite
+# README
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 接口文档
 
-## Recommended IDE Setup
+### articleList
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+* path: `/api/articlelist`
+* params: `null`
+* return: `object[]`，每项内容为`{id: 文章id, title: 文章标题}`
+
+### articleSrc
+
+* path: `/api/articalSrc/:id`
+* params: `id` 文章id
+* return: `string` 文章html路径
+
+### sourceCodeSrc
+
+* path: `/api/sourcecodeSrc/:id`
+* params: `id` 源代码id
+* return: `object[]`，每项内容为`{id: 源代码id, title: 源代码标题, content: 源代码内容}`
+
+## TODO
+
+后台上传pdf、源代码，解析html
+
+文章id和内容的对应

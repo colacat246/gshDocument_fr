@@ -8,13 +8,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      articleSrc: '',
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>
 iframe {
   border: none;
-  box-sizing: border-box;
   height: 100%;
   width: 100%;
 }
