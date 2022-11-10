@@ -10,15 +10,15 @@
 
 ### articleSrc
 
-* path: `/api/articalSrc/:id`
-* params: `id` 文章id
+* path: `/api/articalSrc/:id/:areaWidth`
+* params: `id` 文章id，`areaWidth` 区域宽度
 * return: `string` 文章html路径
 
 ### sourceCodeSrc
 
 * path: `/api/sourcecodeSrc/:id`
 * params: `id` 源代码id
-* return: `object[]`，每项内容为`{id: 源代码id, title: 源代码标题, content: 源代码内容}`
+* return: object[]，每项为`{id: 源代码id, title: 源代码标题, content: 源代码内容}`
 
 ## TODO
 

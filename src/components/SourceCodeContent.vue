@@ -29,10 +29,7 @@ export default {
         1: 'copied successfully',
         2: 'failed',
       },
-      codeList: [
-        { id: 1, title: 'test.c', content: '' },
-        { id: 2, title: '2.c', content: '' },
-      ],
+      codeList: [],
     };
   },
   computed: {
@@ -54,13 +51,12 @@ export default {
     },
   },
   created() {
-    fetch('http://localhost:8000')
+    fetch(`http://localhost:4999/api/sourcecodeSrc/${this.$route.params.id}`)
       .then((res) => {
-        return res.text();
+        return res.json();
       })
-      .then((text) => {
-        this.codeList[0]['content'] = text;
-        this.codeList[1]['content'] = 'int a = 1;';
+      .then((json) => {
+        this.codeList = json;
       })
       .then(() => {
         this.codeList.forEach((i) => {

@@ -15,21 +15,13 @@ export default {
   components: { ArticleListVue },
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title: 'art1',
-          articlePath: '/tests/article1.html',
-          sourceCodePath: '/tests/source1.c',
-        },
-        {
-          id: 2,
-          title: 'art2',
-          articlePath: '/tests/article2.html',
-          sourceCodePath: '/tests/source2.c',
-        },
-      ],
+      articles: [],
     };
+  },
+  async created() {
+    const res = await fetch('http://localhost:4999/api/articlelist');
+    this.articles = await res.json();
+    console.log(this.articles);
   },
 };
 </script>

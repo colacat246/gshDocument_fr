@@ -1,6 +1,9 @@
 <template>
+  <!-- :src="`/tests/article${$route.params.id}.html`" -->
+  <!-- :src="`/tests/GSH_test.html`" -->
   <iframe
-    :src="`/tests/article${$route.params.id}.html`"
+    ref="content"
+    :src="articleSrc"
     name="article"
     sandbox="allow-same-origin"
   ></iframe>
@@ -12,6 +15,14 @@ export default {
     return {
       articleSrc: '',
     };
+  },
+  mounted() {
+    this.articleSrc = `http://localhost:4999/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+  },
+  watch: {
+    $route() {
+      this.articleSrc = `http://localhost:4999/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+    },
   },
 };
 </script>
