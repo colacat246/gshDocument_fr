@@ -1,5 +1,6 @@
-@background-color: #29353b;
+@background-color: #2e2e2e;
 @text-color: #ddd;
+@btn-color: #aaa;
 html {
   // font-size: calc(100vw / 80);
   font-size: 16px;
@@ -21,11 +22,17 @@ li {
 
 button {
   margin: 0;
-  padding: 0;
-  display: block;
-  border: none;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  // display: block;
   background: @background-color;
+  border: 1px solid @btn-color;
   color: @text-color;
+  &:hover {
+    cursor: pointer;
+    border-color: #fff;
+    color: #fff;
+  }
 }
 
 a {

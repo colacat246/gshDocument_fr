@@ -28,17 +28,27 @@ export default {
   width: 100%;
   header {
     box-sizing: border-box;
-    padding: 0.2rem;
     display: flex;
     justify-content: space-around;
     align-self: stretch;
+    background: #3b3b3b;
+    // border-bottom: 1px solid #777;
 
     .article-section-router {
-      margin: 0.2rem;
-      border: 1px solid grey;
-      width: 10rem;
       padding: 0.4rem;
       text-align: center;
+      flex-grow: 1;
+      &:hover {
+        background: #434343;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+      }
+    }
+
+    .router-link-active {
+      background: #2e2e2e;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
     }
   }
   .content-container {

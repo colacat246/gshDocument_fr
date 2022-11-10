@@ -4,7 +4,7 @@ import './normalize.css';
 import './style.css';
 import App from './App.vue';
 // highlightjs
-import 'highlight.js/styles/github-dark.css';
+import 'highlight.js/styles/a11y-dark.css';
 import 'highlight.js/lib/common';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 import VueClipboard from 'vue3-clipboard';

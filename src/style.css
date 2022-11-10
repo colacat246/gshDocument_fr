@@ -3,7 +3,7 @@ html {
 }
 body {
   color: #ddd;
-  background: #29353b;
+  background: #2e2e2e;
 }
 ul {
   display: block;
@@ -14,11 +14,16 @@ li {
 }
 button {
   margin: 0;
-  padding: 0;
-  display: block;
-  border: none;
-  background: #29353b;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  background: #2e2e2e;
+  border: 1px solid #aaa;
   color: #ddd;
+}
+button:hover {
+  cursor: pointer;
+  border-color: #fff;
+  color: #fff;
 }
 a {
   color: #ddd;

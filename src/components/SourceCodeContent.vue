@@ -1,16 +1,20 @@
 <template>
   <div class="code-item" v-for="item in codeList" :key="item.id">
-    <div class="sourcecode-title">{{ item.title }}</div>
-    <button
-          type="button"
-          v-clipboard:copy="item.content"
-          v-clipboard:success="onCopy"
-          v-clipboard:error="onFail"
-          :id="item.id"
-        >
-          Copy
-        </button>
-        <div v-show="showList[item.id]">{{ copyHint[showList[item.id]] }}</div>
+    <div class="title-container">
+      <span class="sourcecode-title">{{ item.title }}</span>
+      <div class="copy-hint" v-show="showList[item.id]">
+        {{ copyHint[showList[item.id]] }}
+      </div>
+      <button
+        type="button"
+        v-clipboard:copy="item.content"
+        v-clipboard:success="onCopy"
+        v-clipboard:error="onFail"
+        :id="item.id"
+      >
+        Copy
+      </button>
+    </div>
     <highlightjs class="code" autodetect :code="item.content" />
   </div>
 </template>
@@ -68,8 +72,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.title-container {
+  font-size: 0.9rem;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  > * {
+    align-self: center;
+  }
+  .copy-hint {
+    padding: 0.5rem;
+    background: green;
+    // opacity: 0.8;
+    border-radius: 0.5rem;
+    // color: green;
+  }
+}
+.sourcecode-title {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.3rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  background: #025686;
+  width: auto;
+}
 .code {
   margin: 0 auto;
   width: 90%;
+}
+code * {
+  font-family: 'consolas';
 }
 </style>

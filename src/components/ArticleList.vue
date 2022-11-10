@@ -18,6 +18,7 @@ export default {
 
 <style lang="less" scoped>
 ul {
+  background: #3b3b3b;
   box-sizing: border-box;
   padding: 0.1rem 0;
   height: 100%;
@@ -32,7 +33,7 @@ ul {
     font: 0.9rem 'consolas', '宋体';
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     &:hover {
-      border-bottom: 1px solid #ddd;
+      background: #434343;
       cursor: pointer;
     }
   }
