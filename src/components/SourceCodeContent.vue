@@ -1,18 +1,17 @@
 <template>
-  <div class="sourcecode-container">
-    <div v-for="item in codeList" :key="item.id">
-      <div class="sourcecode-title">{{ item.title }}</div>
-      <button
-        type="button"
-        v-clipboard:copy="item.content"
-        v-clipboard:success="onCopy"
-        v-clipboard:error="onFail"
-        :id="item.id"
-      >
-        Copy</button
-      ><span v-show="showList[item.id]">{{ copyHint[showList[item.id]] }}</span>
-      <highlightjs ref="code" autodetect :code="item.content" />
-    </div>
+  <div class="code-item" v-for="item in codeList" :key="item.id">
+    <div class="sourcecode-title">{{ item.title }}</div>
+    <button
+          type="button"
+          v-clipboard:copy="item.content"
+          v-clipboard:success="onCopy"
+          v-clipboard:error="onFail"
+          :id="item.id"
+        >
+          Copy
+        </button>
+        <div v-show="showList[item.id]">{{ copyHint[showList[item.id]] }}</div>
+    <highlightjs class="code" autodetect :code="item.content" />
   </div>
 </template>
 
@@ -69,7 +68,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.sourcecode-container {
-  height: 100%;
+.code {
+  margin: 0 auto;
+  width: 90%;
 }
 </style>

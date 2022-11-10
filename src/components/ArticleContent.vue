@@ -2,7 +2,6 @@
   <iframe
     :src="`/tests/article${$route.params.id}.html`"
     name="article"
-    scrolling="auto"
     sandbox="allow-same-origin"
   ></iframe>
 </template>
@@ -19,8 +18,10 @@ export default {
 
 <style lang="less" scoped>
 iframe {
+  display: block;
   border: none;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
 }
 </style>

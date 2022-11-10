@@ -35,31 +35,41 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@header-height: 4rem;
+@footer-height: 1.5rem;
+@main-width: 17rem;
 h1 {
+  margin: 0;
   text-align: center;
-  font-size: 1.8rem;
+  color: #fff;
+  font: normal 1.5rem 'consolas', '宋体';
+  line-height: @header-height;
 }
 .container {
   display: grid;
-  grid-template: 5rem auto 1.5rem / 17rem auto;
+  grid-template: @header-height calc(100vh - @header-height - @footer-height) @footer-height / @main-width calc(
+      100vw - @main-width
+    );
   height: 100vh;
   width: 100vw;
+  // overflow: hidden;
+  box-sizing: border-box;
 }
 header {
-  background: dodgerblue;
+  background: #0083d0;
   grid-area: 1 / 1 / span 1 / span 1;
 }
 aside {
-  background: green;
   grid-area: 2 / 1 / span 1 / span 1;
+  // border: 1px solid red;
+  box-sizing: border-box;
 }
 main {
-  background: red;
   grid-area: 1 / 2 / span 2 / span 1;
-  position: relative;
+  box-sizing: border-box;
 }
 footer {
-  background: gold;
+  background: #222d32;
   grid-area: 3 / 1 / span 1 / span 2;
 }
 </style>

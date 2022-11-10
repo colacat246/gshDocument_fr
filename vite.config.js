@@ -8,7 +8,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         charset: false,
-        // additionalData: '@import "./src/assets/css/global.less"', // 全局less文件，可选
+        // additionalData: '@import "./src/style.less";', // 全局less文件，可选
       },
     },
   },

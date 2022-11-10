@@ -1,10 +1,16 @@
 <template>
-  <div>
+  <div class="article-section-container">
     <header>
-      <router-link :to="`/main/${id}/article`">article</router-link>
-      <router-link :to="`/main/${id}/sourcecode`">source code</router-link>
+      <router-link class="article-section-router" :to="`/main/${id}/article`"
+        >article</router-link
+      >
+      <router-link class="article-section-router" :to="`/main/${id}/sourcecode`"
+        >source code</router-link
+      >
     </header>
-    <router-view class="article-view"></router-view>
+    <div class="content-container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -15,24 +21,31 @@ export default {
 </script>
 
 <style lang="less" scoped>
-div {
+.article-section-container {
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 100%;
-  box-sizing: border-box;
-}
-header {
-  background: chartreuse;
-  display: flex;
-  justify-content: space-around;
-
-  * {
-    margin: 0.2rem;
-    border: 1px solid grey;
-    width: 10rem;
+  width: 100%;
+  header {
+    box-sizing: border-box;
     padding: 0.2rem;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-self: stretch;
+
+    .article-section-router {
+      margin: 0.2rem;
+      border: 1px solid grey;
+      width: 10rem;
+      padding: 0.4rem;
+      text-align: center;
+    }
+  }
+  .content-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: auto;
+    box-sizing: border-box;
   }
 }
 </style>

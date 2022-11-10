@@ -1,8 +1,32 @@
-@font-face {
-    font-family: 'consolas';
-    src: url();
-}
-
 html {
-    font-size: calc(100vw / 80);
+  font-size: 16px;
+}
+body {
+  color: #ddd;
+  background: #29353b;
+}
+ul {
+  display: block;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+button {
+  margin: 0;
+  padding: 0;
+  display: block;
+  border: none;
+  background: #29353b;
+  color: #ddd;
+}
+a {
+  color: #ddd;
+  text-decoration: none;
+}
+pre {
+  overflow: hidden;
+}
+code {
+  overflow: hidden;
 }
