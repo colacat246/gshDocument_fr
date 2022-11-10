@@ -21,7 +21,6 @@ export default {
   async created() {
     const res = await fetch('http://localhost:4999/api/articlelist');
     this.articles = await res.json();
-    console.log(this.articles);
   },
 };
 </script>
