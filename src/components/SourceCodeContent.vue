@@ -1,4 +1,7 @@
 <template>
+  <div class="download">
+    <button @click="download">download article</button>
+  </div>
   <div class="code-item" v-for="item in codeList" :key="item.id">
     <div class="title-container">
       <span class="sourcecode-title">{{ item.title }}</span>
@@ -58,6 +61,21 @@ export default {
     onFail() {
       alert('failed');
     },
+    download() {
+      fetch(
+        `${this.$store.state.baseUrl}/api/downloadArticle/${this.$route.params.id}`
+      ).then((res) => res.blob()).then(
+        blob => {
+          const a = window.document.createElement('a');
+          const url = window.URL.createObjectURL(blob);
+          const fileName = 'test.pdf';
+          a.href = url;
+          a.download = fileName;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        }
+      );
+    },
   },
   created() {
     fetch(
@@ -110,5 +128,9 @@ export default {
 }
 code * {
   font-family: 'consolas';
+}
+.download {
+  padding: 1rem 0;
+  text-align: center;
 }
 </style>

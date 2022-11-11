@@ -1,10 +1,10 @@
 import { createApp } from 'vue';
 import './normalize.css';
-import './style.css';
 import store from './store/index.js';
 // highlightjs
 import hljs from 'highlight.js';
 import 'highlight.js/styles/a11y-dark.css';
+import './style.css';
 // 剪切板
 import VueClipboard from 'vue3-clipboard';
 // 注意，把router在css之后引入，打包才可以使css生效
