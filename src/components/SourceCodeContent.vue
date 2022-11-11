@@ -15,7 +15,16 @@
         Copy
       </button>
     </div>
-    <highlightjs class="code" autodetect :code="item.content" />
+    <!-- 这样写build之后无效果 -->
+    <!-- <highlightjs class="code" language="c" :code="item.content" /> -->
+    <!-- 这样写可以 -->
+    <div v-highlight class="code">
+      <pre>
+        <code>
+        {{ item.content }}
+      </code>
+    </pre>
+    </div>
   </div>
 </template>
 
@@ -51,7 +60,9 @@ export default {
     },
   },
   created() {
-    fetch(`${this.$store.state.baseUrl}/api/sourcecodeSrc/${this.$route.params.id}`)
+    fetch(
+      `${this.$store.state.baseUrl}/api/sourcecodeSrc/${this.$route.params.id}`
+    )
       .then((res) => {
         return res.json();
       })

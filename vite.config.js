@@ -18,4 +18,8 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
     }),
   ],
+  base: './',
+  build: {
+    cssCodeSplit: false,
+  }
 });
