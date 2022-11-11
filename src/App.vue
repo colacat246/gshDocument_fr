@@ -19,7 +19,7 @@ export default {
     };
   },
   async created() {
-    const res = await fetch('http://localhost:4999/api/articlelist');
+    const res = await fetch(`${this.$store.state.baseUrl}/api/articlelist`);
     this.articles = await res.json();
   },
 };

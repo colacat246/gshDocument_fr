@@ -20,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    this.articleSrc = `http://localhost:4999/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+    this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
   },
   watch: {
     $route() {
@@ -29,7 +29,7 @@ export default {
         this.show = true;
         // this.$forceUpdate();
       });
-      this.articleSrc = `http://localhost:4999/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+      this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
     },
   },
 };

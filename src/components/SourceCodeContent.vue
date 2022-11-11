@@ -51,7 +51,7 @@ export default {
     },
   },
   created() {
-    fetch(`http://localhost:4999/api/sourcecodeSrc/${this.$route.params.id}`)
+    fetch(`${this.$store.state.baseUrl}/api/sourcecodeSrc/${this.$route.params.id}`)
       .then((res) => {
         return res.json();
       })
