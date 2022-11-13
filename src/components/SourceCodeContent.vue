@@ -1,8 +1,9 @@
 <template>
   <div class="article-title-container">
-    <div class="resource-title">title</div>
+    <button @click="download" v-show="!downloadingArticle">
+      下载文章：{{ articleTitle }}.pdf
+    </button>
     <div class="prompt-hint" v-show="downloadingArticle">正在下载...</div>
-    <button @click="download">下载文章</button>
   </div>
   <div class="code-item" v-for="item in codeList" :key="item.id">
     <div class="title-container">
@@ -11,6 +12,7 @@
         {{ copyHint[showList[item.id]] }}
       </div>
       <button
+        v-show="!showList[item.id]"
         type="button"
         v-clipboard:copy="item.content"
         v-clipboard:success="onCopy"
@@ -37,11 +39,12 @@
 export default {
   data() {
     return {
+      articleTitle: '',
       downloadingArticle: false,
       showList: {},
       copyHint: {
         0: '',
-        1: 'copied successfully',
+        1: '复制成功',
         2: 'failed',
       },
       codeList: [],
@@ -83,6 +86,10 @@ export default {
     },
   },
   created() {
+    // 获取文章标题
+    this.articleTitle = this.$store.state.articleList.find(
+      (i) => i.id === this.$route.params.id
+    )['title'];
     fetch(
       `${this.$store.state.baseUrl}/api/sourcecodeSrc/${this.$route.params.id}`
     )
@@ -102,11 +109,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@hint-color: #15bc79;
+
 .article-title-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1.5rem;
+  button {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 .resource-title {
   display: inline-block;
@@ -126,11 +140,12 @@ button {
   align-self: center;
 }
 .prompt-hint {
-  padding: 0.5rem;
-  background: green;
+  padding: 0.3rem;
+  align-self: center;
   // opacity: 0.8;
   border-radius: 0.5rem;
-  // color: green;
+  border: 1px solid @hint-color;
+  color: @hint-color;
 }
 .code {
   margin: 0 auto;
