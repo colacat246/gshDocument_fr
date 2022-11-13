@@ -1,14 +1,16 @@
 <template>
   <!-- :src="`/tests/article${$route.params.id}.html`" -->
   <!-- :src="`/tests/GSH_test.html`" -->
-  <iframe
-    :class="{ onload: !show }"
-    ref="content"
-    :src="articleSrc"
-    name="article"
-    sandbox="allow-same-origin"
-  ></iframe>
-  <div class="loading" v-if="!show">正在加载...</div>
+  <div class="iframe-container" ref="content">
+    <iframe
+      :class="{ onload: !show }"
+      ref="iframe"
+      :src="articleSrc"
+      name="article"
+      sandbox="allow-same-origin"
+    ></iframe>
+    <div class="loading" v-if="!show">正在加载...</div>
+  </div>
 </template>
 
 <script>
@@ -19,28 +21,54 @@ export default {
       articleSrc: '',
     };
   },
+  methods: {
+    autoFit() { // 计算iframe自适应尺寸
+      const width = this.$refs.content.clientWidth;
+      const height = this.$refs.content.clientHeight;
+      const widthFromPdf = 1200 + 30;
+      const ratio = width / widthFromPdf;
+      const heightOri = height / ratio;
+      this.$refs.iframe.style.height = heightOri + 'px';
+      this.$refs.iframe.style.transform = `scale(${ratio})`;
+    },
+  },
   mounted() {
-    this.$refs.content.addEventListener('load', () => {
+    // 添加窗口监听
+    window.addEventListener('resize', () => {
+      this.autoFit();
+    });
+    this.autoFit();
+    this.$refs.iframe.addEventListener('load', () => {
       this.show = true;
     });
-    this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+    this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
   },
   watch: {
     $route() {
+      this.autoFit();
       this.show = false;
-      this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
+      this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
     },
   },
 };
 </script>
 
 <style lang="less" scoped>
-iframe {
-  display: block;
-  border: none;
+.iframe-container {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
+  // position: relative;
+  // padding: 0;
+}
+
+iframe {
+  display: block;
+  width: 1200px + 30px;
+  // height: 100%;
+  transform-origin: left top;
+  border: none;
 }
 
 .onload {

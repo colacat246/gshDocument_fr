@@ -10,8 +10,8 @@
 
 ### articleSrc
 
-* path: `/api/articalSrc/:id/:areaWidth`
-* params: `id` 文章id，`areaWidth` 区域宽度
+* path: `/api/articalSrc/:id`
+* params: `id` 文章id
 * return: `string` 文章html路径
 
 ### sourceCodeSrc
@@ -25,5 +25,11 @@
 * path: `/api/downloadArticle/:id`
 * params: `id` 源代码id
 * return: 下载的文件
+
+## 后台尺寸配合
+
+pdf2html输出尺寸使用宽度1080
+
+`pdf2htmlEX --fit-width 1200`
 
 ## TODO
