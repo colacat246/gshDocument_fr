@@ -67,6 +67,7 @@ export default {
     onFail() {
       alert('failed');
     },
+    // 下载文档
     download() {
       this.downloadingArticle = true;
       fetch(
@@ -76,7 +77,7 @@ export default {
         .then((blob) => {
           const a = window.document.createElement('a');
           const url = window.URL.createObjectURL(blob);
-          const fileName = 'test.pdf';
+          const fileName = this.$store.state.articleList.find(i => i.id === this.$route.params.id)['title'] + '.pdf';
           a.href = url;
           a.download = fileName;
           a.click();
