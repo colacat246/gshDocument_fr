@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li
-      v-for="item in articles"
+      v-for="item in $store.state.articleList"
       :key="item.id"
       @click="$router.push(`/main/${item.id}/article`)"
     >
@@ -11,9 +11,7 @@
 </template>
 
 <script>
-export default {
-  props: ['articles'],
-};
+export default {};
 </script>
 
 <style lang="less" scoped>
@@ -29,8 +27,8 @@ ul {
     width: 0;
   }
   li {
-    padding: 0.15rem 1.5rem;
-    font: 0.9rem 'consolas', '宋体';
+    padding: 0.3rem 1.5rem;
+    font: 0.9rem 'monospace' '宋体';
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     &:hover {
       background: #434343;

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import IndexSection from '../components/IndexSection.vue';
 import ArticleSectionVue from '../components/ArticleSection.vue';
 import ArticleContentVue from '../components/ArticleContent.vue';
 import SourceCodeContentVue from '../components/SourceCodeContent.vue';
@@ -6,6 +7,14 @@ import SourceCodeContentVue from '../components/SourceCodeContent.vue';
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    {
+      path: '/',
+      redirect: '/index',
+    },
+    {
+      path: '/index',
+      component: IndexSection,
+    },
     {
       props: true,
       path: '/main/:id',

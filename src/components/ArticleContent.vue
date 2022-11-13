@@ -8,27 +8,26 @@
     name="article"
     sandbox="allow-same-origin"
   ></iframe>
-  <div class="loading" v-if="!show">loading...</div>
+  <div class="loading" v-if="!show">正在加载...</div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      show: true,
+      show: false,
       articleSrc: '',
     };
   },
   mounted() {
+    this.$refs.content.addEventListener('load', () => {
+      this.show = true;
+    });
     this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
   },
   watch: {
     $route() {
       this.show = false;
-      this.$refs.content.addEventListener('load', () => {
-        this.show = true;
-        // this.$forceUpdate();
-      });
       this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}/${this.$refs.content.clientWidth}`;
     },
   },

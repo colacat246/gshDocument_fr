@@ -2,10 +2,10 @@
   <div class="article-section-container">
     <header>
       <router-link class="article-section-router" :to="`/main/${id}/article`"
-        >article</router-link
+        >文章</router-link
       >
       <router-link class="article-section-router" :to="`/main/${id}/sourcecode`"
-        >source code</router-link
+        >相关资源</router-link
       >
     </header>
     <div class="content-container">
