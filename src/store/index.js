@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    baseUrl: '',
+    baseUrl: 'http://8.134.162.35:9999',
     articleList: [],
     welcomeLine: String.raw`
  __     __     ______     __         ______     ______     __    __     ______    

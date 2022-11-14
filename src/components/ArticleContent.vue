@@ -32,6 +32,17 @@ export default {
       this.$refs.iframe.style.height = heightOri + 'px';
       this.$refs.iframe.style.transform = `scale(${ratio})`;
     },
+    getContent() {
+      this.show = false;
+      const path = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
+      fetch(path).then((res) => {
+        if (res.status === 200) {
+          this.articleSrc = path;
+        } else {
+          this.$router.push('/');
+        }
+      });
+    },
   },
   mounted() {
     // 添加窗口监听
@@ -40,13 +51,12 @@ export default {
     this.$refs.iframe.addEventListener('load', () => {
       this.show = true;
     });
-    this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
+    this.getContent();
   },
   watch: {
     $route() {
       this.autoFit();
-      this.show = false;
-      this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
+      this.getContent();
     },
   },
   beforeUnmount() {
