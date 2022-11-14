@@ -22,7 +22,8 @@ export default {
     };
   },
   methods: {
-    autoFit() { // 计算iframe自适应尺寸
+    autoFit() {
+      // 计算iframe自适应尺寸
       const width = this.$refs.content.clientWidth;
       const height = this.$refs.content.clientHeight;
       const widthFromPdf = 1200 + 30;
@@ -34,9 +35,7 @@ export default {
   },
   mounted() {
     // 添加窗口监听
-    window.addEventListener('resize', () => {
-      this.autoFit();
-    });
+    window.addEventListener('resize', this.autoFit);
     this.autoFit();
     this.$refs.iframe.addEventListener('load', () => {
       this.show = true;
@@ -49,6 +48,9 @@ export default {
       this.show = false;
       this.articleSrc = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
     },
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.autoFit);
   },
 };
 </script>

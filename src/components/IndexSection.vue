@@ -1,8 +1,8 @@
 <template>
-  <div class="index-container">
+  <div class="index-container" ref="indexContainer">
     <h1>欢迎来到重言文档</h1>
     <pre>
-        <code>
+        <code ref="asciiGraph">
         {{ $store.state.welcomeLine }}
       </code>
       </pre>
@@ -10,7 +10,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    autoFit() {
+      const ele = this.$refs.indexContainer;
+      let ratio = ele.clientWidth / 1000;
+      ele.style.transform = `scale(${ratio})`;
+    },
+  },
+  mounted() {
+    this.autoFit();
+    window.addEventListener('resize', this.autoFit);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.autoFit);
+  },
+};
 </script>
 
 <style lang="less" scoped>

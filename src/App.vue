@@ -60,6 +60,7 @@ aside {
 main {
   grid-area: 1 / 2 / span 2 / span 1;
   box-sizing: border-box;
+  overflow: hidden;
 }
 footer {
   background: #222d32;
