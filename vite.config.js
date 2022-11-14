@@ -23,10 +23,12 @@ export default defineConfig({
     cssCodeSplit: false,
   },
   server: {
+    // hmr: true,
     proxy: {
-      '/': {
-        target: 'http://8.134.162.35:9999/',
+      '/api': {
+        target: 'http://8.134.162.35:9999',
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
       },
     },
   },
