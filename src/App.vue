@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <header><h1>重言文档</h1></header>
+    <header>
+      <h1>重言文档</h1>
+    </header>
     <aside>
       <ArticleListVue></ArticleListVue>
     </aside>

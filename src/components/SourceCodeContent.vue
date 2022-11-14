@@ -58,7 +58,6 @@ export default {
   methods: {
     onCopy(v) {
       this.showList[v.trigger.getAttribute('id')] = 1;
-      console.log(this.showList);
       setTimeout(() => {
         this.showList[v.trigger.getAttribute('id')] = 0;
       }, 1000);

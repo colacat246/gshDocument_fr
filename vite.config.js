@@ -21,5 +21,13 @@ export default defineConfig({
   base: './',
   build: {
     cssCodeSplit: false,
-  }
+  },
+  server: {
+    proxy: {
+      '/': {
+        target: 'http://8.134.162.35:9999/',
+        changeOrigin: true,
+      },
+    },
+  },
 });
