@@ -7,7 +7,7 @@
       ref="iframe"
       :src="articleSrc"
       name="article"
-      sandbox="allow-same-origin"
+      sandbox="allow-scripts"
     ></iframe>
     <div class="loading" v-if="!show">正在加载...</div>
   </div>
