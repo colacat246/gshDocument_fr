@@ -26,7 +26,7 @@ export default defineConfig({
     // hmr: true,
     proxy: {
       '/api': {
-        target: 'http://8.134.162.35:9999',
+        target: 'http://localhost:5169',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api'),
       },

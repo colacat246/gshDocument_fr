@@ -3,7 +3,8 @@ import { createStore } from 'vuex';
 const store = createStore({
   state: {
     baseUrl: import.meta.env.VITE_BASE_URL,
-    articleList: [],
+    articleListAcademic: [],
+    articleListBlog: [],
     welcomeLine: String.raw`
  __     __     ______     __         ______     ______     __    __     ______    
 /\ \  _ \ \   /\  ___\   /\ \       /\  ___\   /\  __ \   /\ "-./  \   /\  ___\   
@@ -14,7 +15,8 @@ const store = createStore({
   },
   mutations: {
     updateArticleList(state, newData) {
-      state.articleList = newData;
+      state.articleListAcademic = newData.academic;
+      state.articleListBlog = newData.blog;
     },
   },
 });

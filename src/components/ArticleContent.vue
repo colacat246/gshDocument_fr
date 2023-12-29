@@ -2,12 +2,18 @@
   <!-- :src="`/tests/article${$route.params.id}.html`" -->
   <!-- :src="`/tests/GSH_test.html`" -->
   <div class="iframe-container" ref="content">
-    <iframe
+    <!-- <iframe
       :class="{ onload: !show }"
       ref="iframe"
       :src="articleSrc"
       name="article"
       sandbox="allow-scripts"
+    ></iframe> -->
+    <iframe
+      :class="{ onload: !show }"
+      ref="iframe"
+      :src="`${articleSrc}#toolbar=0`"
+      name="article"
     ></iframe>
     <div class="loading" v-if="!show">正在加载...</div>
   </div>
@@ -34,7 +40,7 @@ export default {
     },
     getContent() {
       this.show = false;
-      const path = `${this.$store.state.baseUrl}/api/articleSrc/${this.$route.params.id}`;
+      const path = `${this.$store.state.baseUrl}/api/article/1/${this.$route.params.id}`;
       fetch(path).then((res) => {
         if (res.status === 200) {
           this.articleSrc = path;

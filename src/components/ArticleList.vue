@@ -2,7 +2,7 @@
   <ul>
     <li
       class="list-item"
-      v-for="item in $store.state.articleList"
+      v-for="item in $store.state.articleListAcademic"
       :key="item.id"
       @click="$router.push(`/main/${item.id}/article`)"
     >

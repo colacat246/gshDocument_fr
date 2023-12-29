@@ -15,16 +15,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ArticleListVue from './components/ArticleList.vue';
-export default {
-  components: { ArticleListVue },
-  async created() {
-    const res = await fetch(`${this.$store.state.baseUrl}/api/articlelist`);
-    const data = await res.json();
-    this.$store.commit('updateArticleList', data);
-  },
-};
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
+const store = useStore();
+
+onMounted(async () => {
+  const resBlog = await fetch(`${store.state.baseUrl}/api/blogTitles`);
+  const dataBlog = await resBlog.json();
+
+  const resAca = await fetch(`${store.state.baseUrl}/api/academicTitles`);
+  const dataAca = await resAca.json();
+  const dataObj = { academic: dataAca.value, blog: dataBlog.value };
+  store.commit('updateArticleList', dataObj);
+});
 </script>
 
 <style lang="less" scoped>

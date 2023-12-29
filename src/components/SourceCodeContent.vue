@@ -67,6 +67,7 @@ export default {
       alert('failed');
     },
     // 下载文档
+    // FIXME
     download() {
       this.downloadingArticle = true;
       fetch(
@@ -76,7 +77,12 @@ export default {
         .then((blob) => {
           const a = window.document.createElement('a');
           const url = window.URL.createObjectURL(blob);
-          const fileName = '蒋_' + this.$store.state.articleList.find(i => i.id === this.$route.params.id)['title'] + '.pdf';
+          const fileName =
+            '蒋_' +
+            this.$store.state.articleList.find(
+              (i) => i.id === this.$route.params.id
+            )['title'] +
+            '.pdf';
           a.href = url;
           a.download = fileName;
           a.click();
@@ -87,17 +93,20 @@ export default {
   },
   created() {
     // 获取文章标题
-    this.articleTitle = this.$store.state.articleList.find(
-      (i) => i.id === this.$route.params.id
+    this.articleTitle = this.$store.state.articleListAcademic.find(
+      (i) => i.id === parseInt(this.$route.params.id)
     )['title'];
-    fetch(
-      `${this.$store.state.baseUrl}/api/sourcecodeSrc/${this.$route.params.id}`
-    )
+    fetch(`${this.$store.state.baseUrl}/api/code/${this.$route.params.id}`)
       .then((res) => {
         return res.json();
       })
       .then((json) => {
-        this.codeList = json;
+        console.log(json.value);
+        this.codeList = json.value;
+        // HACK 去除第一行缩进
+        this.codeList.forEach((i) => {
+          i.content = '\r' + i.content;
+        });
       })
       .then(() => {
         this.codeList.forEach((i) => {
